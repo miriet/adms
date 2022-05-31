@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="5864a754-83b6-4284-99a1-e9fa402b1733" name="ADMS_towin" url="http://192.168.4.10">
+        <fileTransfer host="192.168.4.10" port="22" rootFolder="/bluesky/source" accessType="SFTP">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" />
+          </advancedOptions>
+          <option name="port" value="22" />
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

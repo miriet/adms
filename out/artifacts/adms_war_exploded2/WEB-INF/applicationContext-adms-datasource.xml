@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jee="http://www.springframework.org/schema/jee"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
+       	http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+    
+    <!--<jee:jndi-lookup id="dataSource" jndi-name="jdbc/web"/>-->
+   	
+   	<!--<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">-->
+        <!--<property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
+        <!--<property name="url" value="jdbc:mysql://localhost:3306/cms"/>-->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>
+        <!--<property name="driverClass" value="org.mariadb.jdbc.Driver"/>-->
+        <property name="url" value="jdbc:mysql://141.223.182.52:3306/adms?useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;allowMultiQueries=true&amp;verifyServerCertificate=false&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8"/>
+        <property name="username" value="root"/>
+        <property name="password" value="adms1234"/>
+        <!--<property name="url" value="jdbc:mysql://127.0.0.1:3306/adms?useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;allowMultiQueries=true&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8"/>-->
+        <!--<property name="username" value="adms"/>-->
+        <!--<property name="password" value="adms"/>-->
+        <!--<property name="url" value="jdbc:mysql://192.168.4.10:3306/adms?useLegacyDatetimeCode=false&amp;serverTimezone=UTC&amp;allowMultiQueries=true&amp;useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;characterSetResults=UTF-8"/>-->
+    </bean>
+
+   	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter" />
+        </property>
+        <property name="dataSource" ref="dataSource"/>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop> 
+                <prop key="hibernate.connection.pool_size">1</prop>
+                <prop key="hibernate.connection.shutdown">true</prop>
+                 <prop key="hibernate.show_sql">false</prop>
+                <!-- <prop key="hibernate.format_sql">true</prop> -->
+                
+                <!-- <prop key="hibernate.hbm2ddl.auto">create-drop</prop> -->
+                 <prop key="hibernate.hbm2ddl.auto">update</prop>
+                <!--<prop key="hibernate.hbm2ddl.auto">none</prop>-->
+                
+                <prop key="hibernate.cache.use_second_level_cache">true</prop>
+                <prop key="hibernate.cache.region.factory_class">org.hibernate.cache.ehcache.EhCacheRegionFactory</prop>
+                <prop key="hibernate.connection.CharSet">utf8</prop>
+       			<prop key="hibernate.connection.characterEncoding">utf8</prop>
+        		<prop key="hibernate.connection.useUnicode">true</prop>
+                <!--<prop key="hibernate.hbm2ddl.import_files" >-->
+                	<!--classpath:/sql/adms_admin.sql-->
+                <!--</prop>-->
+                <!--<prop key="net.sf.ehcache.configurationResourceName" >classpath:/cache/ehcache.xml</prop>-->
+            </props>
+        </property>
+        <!-- 엔티티 정의된 클래스들이 있는 패키지 등록 -->
+        <property name="packagesToScan" value="postech.adms"/>
+    </bean>
+    
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"></property>
+    </bean>
+       
+   	 <tx:annotation-driven transaction-manager="transactionManager" />
+   	 <jpa:auditing auditor-aware-ref="auditorAware" />
+    <bean id="auditorAware" class="postech.adms.audit.SpringSecurityAuditorAware" />
+</beans>

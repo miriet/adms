@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="CtCliE">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/CtCliE.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

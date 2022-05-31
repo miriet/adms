@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/util
+       http://www.springframework.org/schema/util/spring-util.xsd">
+    
+	<context:component-scan base-package="postech.adms" />
+    
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+  		<property name="basenames">
+   			<list>
+    			<value>classpath:/messages</value>
+   			</list>
+  		</property>
+  		<property name="useCodeAsDefaultMessage" value="true" />
+  		<property name="cacheSeconds" value="5"/>
+  		<property name="defaultEncoding" value="UTF-8" />
+  	</bean>
+    
+    <util:properties id="cms" location="classpath:/props/adms-config.properties" />
+    
+    <bean id="messageSourceAccessor" class="org.springframework.context.support.MessageSourceAccessor">
+  		<constructor-arg ref="messageSource"/>
+ 	</bean>
+ 	<bean id="messageHandler" class="postech.adms.web.message.MessageHandler" />
+ 	
+</beans>

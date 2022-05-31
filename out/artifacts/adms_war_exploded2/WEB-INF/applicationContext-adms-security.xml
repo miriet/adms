@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans 
+		http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/security 
+		http://www.springframework.org/schema/security/spring-security.xsd
+	">
+	<!-- <beans:bean id="authenticationEntryPoint" class="kr.or.kotra.web.handler.AjaxAwareAuthenticationEntryPoint">
+  		<beans:constructor-arg name="loginFormUrl" value="/login" />
+  	</beans:bean> -->
+  	
+  	<beans:bean id="authenticationEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+    	<beans:constructor-arg name="loginFormUrl" value="/login">
+    	</beans:constructor-arg>
+    </beans:bean>
+    
+	<beans:bean id="saltSource" class="org.springframework.security.authentication.dao.ReflectionSaltSource">
+		<beans:property name="userPropertyToUse" value="saltKey"/>
+	</beans:bean>
+	
+	<beans:bean id="passwordEncoder" class="org.springframework.security.authentication.encoding.ShaPasswordEncoder" />
+	
+    <http pattern="/static/**" security="none"></http>
+	<http pattern="/favicon.ico" security="none"></http>
+		
+	
+	<http auto-config="true" use-expressions="true" entry-point-ref="authenticationEntryPoint">
+		<headers>
+        	<frame-options policy="SAMEORIGIN"/>
+    	</headers>
+    	<intercept-url pattern="/join/**" access="permitAll" />
+		<intercept-url pattern="/login" access="permitAll" />
+        <intercept-url pattern="/api/**" access="permitAll" />
+        <intercept-url pattern="/kcpCert/**" access="permitAll" />
+        <intercept-url pattern="/jco/**" access="permitAll" />
+		<intercept-url pattern="/**" access="authenticated" />
+		
+		<!--  <access-denied-handler ref="ajaxAccessDeniedHandler"/>-->
+		<form-login login-page="/login" login-processing-url="/login_post" username-parameter="userId" password-parameter="password" authentication-failure-handler-ref="admsAuthenticationFailHandler" authentication-success-handler-ref="admsAuthenticationSuccessHandler"/>
+		<logout logout-url="/logout" logout-success-url="/" invalidate-session="true"/>
+		<remember-me key="8XMqucbA5z@7DV%iMx+DKf/_+h.*KDbVeonXVyw_kxfcPDt*VnP.eaeoXP2Mel*sTnWl5sNlA#qjAu36-Irt-c!KJ//F!jo8x0Ez3HH0a1.n6!ozi_YV?T@!sLb6sHph" token-validity-seconds="172800"/>
+		<csrf disabled="true"/>
+		<!-- <session-management>
+			<concurrency-control max-sessions="1" expired-url="/login"/>
+		</session-management> -->
+		<custom-filter ref="cmsPostSecurityFilterChain" after="SWITCH_USER_FILTER"/>
+	</http>
+	
+	<authentication-manager alias="authenticationManager">
+		<authentication-provider user-service-ref="admsUserDetailService">
+			<password-encoder ref="passwordEncoder" >
+				<salt-source ref="saltSource"/>
+			</password-encoder>
+		</authentication-provider>
+	</authentication-manager>
+	
+	<beans:bean id="expressionHandler" class="org.springframework.security.access.expression.method.DefaultMethodSecurityExpressionHandler">
+		<beans:property name="defaultRolePrefix" value="PERMISSION_"/>
+	</beans:bean>
+	
+	<beans:bean id="preInvocationAdvice" class="org.springframework.security.access.expression.method.ExpressionBasedPreInvocationAdvice">
+		<beans:property name="expressionHandler" ref="expressionHandler"/>
+	</beans:bean>
+	
+	<beans:bean id="accessDecisionManager" class="org.springframework.security.access.vote.AffirmativeBased">
+		<beans:constructor-arg name="decisionVoters" >
+			<beans:list>
+                <beans:bean class="org.springframework.security.access.prepost.PreInvocationAuthorizationAdviceVoter">
+                	<beans:constructor-arg name="pre" ref="preInvocationAdvice"/>
+                </beans:bean>
+                <beans:bean class="org.springframework.security.access.vote.AuthenticatedVoter"/>
+            </beans:list>
+       	</beans:constructor-arg>
+   	</beans:bean>
+    
+    <global-method-security access-decision-manager-ref="accessDecisionManager" secured-annotations="enabled" pre-post-annotations="enabled" />
+</beans:beans>

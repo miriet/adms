@@ -1,0 +1,66 @@
+@charset "utf-8"; 
+
+/************************************************************************************
+POPUP PAGE
+*************************************************************************************/
+.popup-main01{
+	position:absolute;
+	top:500px;
+	left: 20%; 
+	clear:both;
+	width:660px;
+	border: 1px solid #000;
+	background:#fff url(images/popup/bg_popup_tit.gif) repeat-x left top;
+	padding:0 20px 20px;
+	z-index: 1000;
+	}
+.popup-tit{
+	position: relative;
+	margin:0;
+	top:6px;
+	}
+.popup-tit h4{
+	background: url(images/popup/bul_pop.gif) no-repeat 0px 3px;
+	_background: url(images/popup/bul_pop.gif) no-repeat 0px 3px;
+	padding:0px 15px;
+	_padding:6px 0 0 15px;
+	color: #fff;
+	margin:0;
+	} 	
+.popup-con{
+	margin:20px 0;
+	_margin:40px 0;
+	overflow: visible;
+	width: 100%;
+	}	
+.pop-tit-box h5{ 
+	height:15px;
+	padding:0px 0 10px 15px; 
+	_padding:5px 0 0 15px; 
+	color: #000;
+	background: url(images/popup/li_sel.gif) no-repeat 0px 3px;
+	margin:0;
+	}		 
+.pop-table{
+	padding: 1px; 
+	width: 100%;
+	height:150px;
+	overflow-y:scroll;   
+	border: 1px solid #b2b2b2;
+	}	
+.pop-btn01{
+	width: 100%;
+	clear: both;
+	text-align: center;
+	padding:10px 0 0 0;
+	}
+.pop-btn02{
+	width: 100%;
+	}
+.pop-btn02 ul{
+	margin:10px 0;
+	float:left; 
+	}	
+.pop-btn02 ul li{
+	float:left;
+	}	

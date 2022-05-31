@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SshConfigs">
+    <configs>
+      <sshConfig authType="PASSWORD" connectionConfig="{&quot;serverAliveInterval&quot;:300}" host="192.168.4.10" id="df295b54-ad16-4071-a976-0337a002a6e6" port="22" customName="ADMS_towin" nameFormat="CUSTOM" username="towin">
+        <option name="customName" value="ADMS_towin" />
+      </sshConfig>
+      <sshConfig authType="PASSWORD" host="192.168.4.10" id="689951df-a88b-49a2-9a8f-6a4226cadade" port="22" customName="ADMS_towin" nameFormat="CUSTOM" username="towin">
+        <option name="customName" value="ADMS_towin" />
+      </sshConfig>
+    </configs>
+  </component>
+</project>

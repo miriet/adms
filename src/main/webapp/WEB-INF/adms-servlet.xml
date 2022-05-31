@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+	   xmlns:task="http://www.springframework.org/schema/task"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context
+       http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/aop
+       http://www.springframework.org/schema/aop/spring-aop.xsd
+       http://www.springframework.org/schema/mvc
+       http://www.springframework.org/schema/mvc/spring-mvc.xsd
+	   http://www.springframework.org/schema/task
+	   http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+	<context:component-scan base-package="postech.adms" />
+	
+	<mvc:resources mapping ="/static/**" location="/static/"  />
+	
+	<mvc:view-controller path="/login" 		view-name="login"/>
+	<mvc:view-controller path="/" 			view-name="main"/>
+	<task:annotation-driven />
+	
+<!-- 화일 업로드 	-->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+  		<property name="maxUploadSize" value="100000000" />
+  		<property name="uploadTempDir" ref="uploadDirResource" />
+	</bean>
+
+	<bean id="uploadDirResource" class="org.springframework.core.io.FileSystemResource">
+  		<constructor-arg>
+    		<value>/data/adms/upload/</value>
+    		<!--<value>source/upload/</value>-->
+  		</constructor-arg>
+	</bean>
+ 	
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.FixedLocaleResolver">
+		<property name="defaultLocale" value="en_US"/>
+	</bean>
+		
+	<!-- <bean id="tilesView" class="org.springframework.web.servlet.view.tiles3.TilesViewResolver"> -->
+	<bean id="tilesView" class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+    	<property name="viewClass" value="org.springframework.web.servlet.view.tiles3.TilesView"/>
+        <property name="order" value="1" />
+    </bean>
+    
+    <bean id="tilesConfigurer" class="org.springframework.web.servlet.view.tiles3.TilesConfigurer">
+		<property name="definitions" value="classpath:/tiles/tiles-config.xml"/>
+  	</bean>
+	
+	<bean id="jsonMapper" class="postech.adms.common.json.HibernateAwareObjectMapper" />
+	
+	<bean id="jsonView" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+		<property name="objectMapper" ref="jsonMapper" />
+	</bean>
+	
+	<bean id="jstlView" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+       	<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/WEB-INF/jsp/" />
+		<property name="suffix" value=".jsp" />
+		<property name="order" 	value="2" />
+	</bean>
+	
+	<bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+  		<property name="contentNegotiationManager">
+    		<bean id="contentNegotiationManager" class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+				<property name="favorPathExtension" value="false" />
+				<property name="ignoreAcceptHeader" value="false" />
+				<property name="mediaTypes">
+					<value>
+						json=application/json;charset=UTF-8
+            			xml=application/xml;charset=UTF-8
+            			text=text/plain;charset=UTF-8
+            			htm=text/html;charset=UTF-8
+						html=text/html;charset=UTF-8
+						do=text/html;charset=UTF-8
+					</value>
+				</property>
+			</bean>
+    	</property>
+  		<property name="viewResolvers">
+    		<list>
+    			<ref bean="tilesView" />
+				<ref bean="jstlView" />
+			</list>
+  		</property>
+  		<property name="defaultViews">
+    		<list>
+      			<ref bean="jsonView" />
+      		</list>
+  		</property>
+	</bean>
+	
+	<!-- <context:property-placeholder location="classpath:/props/adms-config.properties" /> -->
+    
+    <context:annotation-config />
+	<mvc:annotation-driven >
+		<mvc:message-converters>
+		    <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		        <property name="objectMapper">
+		            <ref bean="jsonMapper"/>
+		        </property>
+		    </bean>
+		</mvc:message-converters>
+	</mvc:annotation-driven>
+	<aop:aspectj-autoproxy />
+</beans>

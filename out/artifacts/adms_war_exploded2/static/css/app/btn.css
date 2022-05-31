@@ -1,0 +1,92 @@
+@charset "utf-8"; 
+
+/* Button Reset */
+.button,
+.button a,
+.button button,
+.button input { 
+	position:relative; 
+	margin:0; 
+	display:-moz-inline-stack;
+	display:inline-block;
+	text-decoration:none !important; 
+	border:0; 
+	font-size:12px; 
+	font-family:'Tahoma', Sans-serif; 
+	white-space:nowrap;
+	background:url('images/common/buttonWhite.gif') no-repeat; 
+	overflow:visible; 
+	color:#333;
+	}
+.button { 
+	height:23px; 
+	padding:0; 
+	vertical-align:middle; 
+	margin-right:2px; 
+	background-position:left top;
+	}
+.button a,
+.button button,
+.button input{ 
+	left:2px; 
+	vertical-align:top; 
+	cursor:pointer;
+	}
+
+/* Button Size */ 
+.button.xLarge { height:35px; background-position:left -65px; }
+.button.normal { height:20px; background-position:left -132px; }
+.button.small { height:18px; background-position:left -107px; }
+.button.normal a,
+.button.normal button,
+.button.normal input { height:20px; padding:0 10px 0 8px; font-size:11px; line-height:20px; background-position:right -132px;}
+.button a,
+.button button,
+.button input { height:23px; padding:0 10px 0 8px; font-size:12px; line-height:23px; background-position:right top;}
+.button.large a,
+.button.large button,
+.button.large input { height:30px; padding:0 10px 0 8px; font-size:16px; line-height:29px; background-position:right -30px;}
+.button.xLarge a,
+.button.xLarge button,
+.button.xLarge input { height:35px; padding:0 10px 0 8px; font-size:20px; line-height:35px; background-position:right -65px;}
+.button.small a,
+.button.small button,
+.button.small input { height:18px; padding:0 6px 0 4px; font-size:11px; line-height:18px; background-position:right -107px;}
+
+/* Button Text Color */
+.button *:hover,
+.button *:active,
+.button *:focus{ color:#4d74b1;}
+.button.gray,
+.button.gray a,
+.button.gray button,
+.button.gray input { background-image:url('images/common/buttonGray.gif'); color:#f505050;}
+.button.gray *:hover,
+.button.gray *:active,
+.button.gray *:focus{ color:#4d74b1;}
+.button.black,
+.button.black a,
+.button.black button,
+.button.black input { background-image:url('images/common/buttonBlack.gif'); color:#fff;}
+.button.black *:hover,
+.button.black *:active,
+.button.black *:focus{ color:#bbbbbb;}
+.button.orange,
+.button.orange a,
+.button.orange button,
+.button.orange input { background-image:url('images/common/buttonOrange.gif'); color:#fff;}
+.button.orange *:hover,
+.button.orange *:active,
+.button.orange *:focus{ color:#fff958;}
+.button.blue,
+.button.blue a,
+.button.blue button,
+.button.blue input { background-image:url('images/common/buttonBlue01.gif'); color:#fff;}
+.button.blue *:hover,
+.button.blue *:active,
+.button.blue *:focus{ color:#c9e7ff;}
+
+/* Button Text Strong */
+.button.strong * { font-weight:bold !important;}
+
+.button.iconfile{ background-image:red url('images/common/ico_image.gif') 50% 50%;}

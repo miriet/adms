@@ -1,0 +1,9 @@
+/* common */
+.bul_list01 { display: inherit; padding-left: 12px; background: transparent url('./images/common/bul_list01.png') no-repeat 0px 50%; }
+textarea { padding: 5px; }
+
+/* Company Page Style */
+#mainTabs>div>div { height: 350px; padding-top: 15px; }
+
+/* Assistant Page Style */
+#mainTabs_assist>div>div { height: 370px; padding-top: 15px; }

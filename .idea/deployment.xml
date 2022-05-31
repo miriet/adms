@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="PublishConfigData" serverName="ADMS_towin" persistUploadOnCheckin="false" showNewOnTargetInSync="false">
+    <serverData>
+      <paths name="ADMS_towin">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/WebContent" local="$PROJECT_DIR$" web="/" />
+          </mappings>
+          <excludedPaths>
+            <excludedPath path="/WebContent/WEB-INF/adms-servlet.xml" />
+            <excludedPath path="/WebContent/WEB-INF/applicationContext-adms-datasource.xml" />
+          </excludedPaths>
+        </serverdata>
+      </paths>
+    </serverData>
+  </component>
+</project>

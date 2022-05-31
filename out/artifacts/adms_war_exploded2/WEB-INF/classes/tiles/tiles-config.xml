@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+<tiles-definitions>
+	<definition name="defaultLayout" template="/WEB-INF/jsp/layout/layout.jsp">
+    	<put-attribute name="title" expression="${menuTitle}"/>
+	  	<put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp"/>
+	  	<put-attribute name="menu" value="/WEB-INF/jsp/layout/menu.jsp"/>
+	  	<put-attribute name="body" value="/WEB-INF/jsp/layout/body.jsp"/>
+	  	<put-attribute name="footer" value="/WEB-INF/jsp/layout/footer.jsp"/>
+  	</definition>
+  	
+  	<definition name="emptyLayout" template="/WEB-INF/jsp/layout/emptylayout.jsp">
+    	<put-attribute name="title" expression="${menuTitle}"/>
+	  	<put-attribute name="header" value="/WEB-INF/jsp/layout/header.jsp"/>
+	  	<put-attribute name="body" value="/WEB-INF/jsp/layout/body.jsp"/>
+	</definition>
+	
+	<definition name="exceptionLayout" template="/WEB-INF/jsp/layout/errorlayout.jsp">
+    	<!-- <put-attribute name="title">레이아웃페이지</put-attribute> -->
+	  	<put-attribute name="body" value="/WEB-INF/jsp/layout/body.jsp"/>
+	</definition>
+  	
+  	<definition name="login" extends="emptyLayout">
+		<put-attribute name="title" expression="Login"/>
+	  	<put-attribute name="body" value="/WEB-INF/jsp/login/login.jsp"/>
+	</definition>
+	
+	<definition name="main" extends="defaultLayout">
+		<!-- <put-attribute name="title">메뉴관리</put-attribute> -->
+	  	<put-attribute name="body" value="/WEB-INF/jsp/main/main.jsp"/>
+	</definition>
+
+	<definition name="alumnusMemberUpdateForm" extends="defaultLayout">
+		<!-- <put-attribute name="title">메뉴관리</put-attribute> -->
+		<put-attribute name="body" value="/WEB-INF/jsp/user/alumnusMemberUpdateForm.jsp"/>
+	</definition>
+	<definition name="alumnusmembersForm" extends="defaultLayout">
+		<!-- <put-attribute name="title">메뉴관리</put-attribute> -->
+		<put-attribute name="body" value="/WEB-INF/jsp/member/alumnusmembersForm.jsp"/>
+	</definition>
+	
+	<definition name="user" extends="defaultLayout">
+		<!-- <put-attribute name="title">메뉴관리</put-attribute> -->
+		<put-attribute name="body" value="/WEB-INF/jsp/user/user.jsp"/>
+	</definition>
+
+	<definition name="group" extends="defaultLayout">
+		<!-- <put-attribute name="title">메뉴관리</put-attribute> -->
+		<put-attribute name="body" value="/WEB-INF/jsp/user/group.jsp"/>
+	</definition>
+	
+	<definition name="join/joinForm" extends="emptyLayout">
+        <put-attribute name="body" value="/WEB-INF/jsp/join/joinForm.jsp"/>
+    </definition>
+
+    <definition name="member" extends="defaultLayout">
+        <!-- <put-attribute name="title">메뉴관리</put-attribute> -->
+        <put-attribute name="body" value="/WEB-INF/jsp/member/member.jsp"/>
+    </definition>
+
+    <definition name="member/memberWriteForm" extends="emptyLayout">
+        <put-attribute name="body" value="/WEB-INF/jsp/member/memberWriteForm.jsp"/>
+    </definition>
+
+    <definition name="member/memberUpdateForm" extends="emptyLayout">
+        <put-attribute name="body" value="/WEB-INF/jsp/member/memberUpdateForm.jsp"/>
+    </definition>
+    
+    <definition name="member/saveResult" extends="emptyLayout">
+        <put-attribute name="body" value="/WEB-INF/jsp/member/saveResult.jsp"/>
+    </definition>
+
+    <!--  -->
+    <definition name="member/alumnusMemberView" extends="emptyLayout">
+        <put-attribute name="body" value="/WEB-INF/jsp/member/alumnusMemberView.jsp"/>
+    </definition>
+
+	<definition name="upload" extends="defaultLayout">
+		<!-- <put-attribute name="title">메뉴관리</put-attribute> -->
+		<put-attribute name="body" value="/WEB-INF/jsp/upload/uploadList.jsp"/>
+	</definition>
+
+    <definition name="upload/uploadDetailList" extends="emptyLayout">
+		<put-attribute name="body" value="/WEB-INF/jsp/upload/uploadDetailList.jsp"/>
+    </definition>
+
+	<definition name="update" extends="defaultLayout">
+		<!-- <put-attribute name="title">메뉴관리</put-attribute> -->
+		<put-attribute name="body" value="/WEB-INF/jsp/upload/updateList.jsp"/>
+	</definition>
+
+	<definition name="popup/*/*" extends="emptyLayout">
+		<!-- <put-attribute name="title">메뉴관리</put-attribute> -->
+		<put-attribute name="body" value="/WEB-INF/jsp/{1}/{2}.jsp"/>
+	</definition>
+
+	<definition name="error/*" extends="exceptionLayout">
+		<!-- <put-attribute name="title">메뉴관리</put-attribute> -->
+		<put-attribute name="body" value="/WEB-INF/jsp/error/{1}.jsp"/>
+	</definition>
+
+</tiles-definitions>

@@ -1,0 +1,194 @@
+@charset "utf-8"; 
+
+/************************************************************************************
+LOGIN PAGE
+*************************************************************************************/
+body{border-bottom:0;}
+#loginpage{
+	background:url('/static/images/login/bg_body.gif') repeat left top;
+	width:100%;
+	text-align:center;
+	*font-size:12px;
+	}
+#logwrap{
+	height:672px;
+	width:100%;
+	background:url('/static/images/login/bg_loginpage.gif') repeat-x left top;
+	text-align:center;
+	}
+#wrapper{
+	margin:0 auto;
+	background:url('/static/images/login/bg_logo.gif') no-repeat 50% top;
+	width:782px;
+	height:100%;
+	position:relative;
+	}
+.loginpage-con{
+	position:absolute;
+	left:60px;
+	top:80px;
+	overflow:hidden;
+	}
+.loginpage-con h1{
+	background:url('/static/images/login/kotra_logo2.png') no-repeat left top;
+	background-size: 100% 100%;
+	-o-background-size: 100% 100%;
+	-ms-background-size: 100% 100%;
+	-moz-background-size: 100% 100%;
+    -webkit-background-size: 100% 100%;
+	text-indent:-10000px;
+    width:450px; 
+	height:220px;
+	margin-left: 100px;
+	}
+.loginpage-con h1 a{
+	cursor:pointer;
+	}
+.loginpage-box{
+	position:relative;
+	width:350px;
+	height:123px;
+	margin:165px 0 0 157px;
+	text-align:left;
+	}
+.log-input{
+	width:100%;
+	}
+.log-input p{
+	position:absolute;
+	right:0;
+	top:13px;          
+	}
+.log-input p a{
+	display:block;
+	overflow:hidden;
+	text-indent:-9999em;
+	background:url('/static/images/login/btn_log.gif') no-repeat;
+	width:65px;
+	height:66px;
+}
+.log-input p a:hover,
+.log-input p a:focus{
+	background:url('/static/images/login/btn_log_on.gif') no-repeat; 
+}
+.log-int-t ,.log-int-p{
+	background:url('/static/images/login/bg_line.gif') no-repeat left bottom;
+	font-size:16px;
+	color:#000;
+	height:40px;
+	width:266px;
+	border:none;
+	text-align:center;
+	}
+.pop_notice{
+	color:#ff570d;
+	margin: 5px 0 0 0;
+	}
+.log-register{
+	height:23px;
+	padding:20px 0 0 0;
+	color:#222;
+	}
+#footer-log{position:absolute; left:5%; bottom: -130px;}
+
+
+/* pop-register */
+.pop-register{
+	position:absolute;
+	right:-300px;
+	top:180px;
+	width:346px;
+	text-align:left;
+	background:#535353 url('/static/images/login/bg_register2.gif') no-repeat left top;
+	padding:0 0 30px 0;
+	border-left: 1px solid #5c5c5c;
+	border-right: 1px solid #5c5c5c;
+	border-bottom: 1px solid #5c5c5c;
+ 	}
+
+.pop-register h2{
+	background:none; 
+	font:20px 'Futura' 'Helvetica' sans-serif;
+	color:#fff;
+	position:relative;
+	margin:10px 0 0 20px;
+	text-shadow:1px 1px 1px #000;
+	}
+.ft_org{
+	color:#6ce8ff;
+	background:none;
+	}
+.clo{
+	position:absolute;
+	right:20px;
+	top:5px;
+	}
+.clo02{
+	position:absolute;
+	right:0px;
+	top:0px;
+	_right:20px;
+	}	
+.pop-register ul{
+	margin:0px 20px;
+	font:bold 15px 'dotum' sans-serif;
+	color:#fff;
+	}
+.int-regi{
+	padding:0 0 0 5px;
+	border-radius:5px;
+	vertical-align:middle;
+	background:#fff;
+	height:26px;
+	text-shadow:1px 1px 3px #333;
+	width:97%;
+	}
+.int-regi2{
+	padding:0 0 0 5px;
+	border-radius:5px;
+	vertical-align:middle;
+	background:#fff;
+	height:52px;
+	text-shadow:1px 1px 3px #333;
+	width:97%;
+	}
+.fclear{
+	clear:both;
+	}
+
+
+/************************************************************************************
+LICENSE PAGE
+*************************************************************************************/
+.license-con{
+	position:absolute;
+	left:0px;
+	top:20px;
+	overflow:hidden;
+	text-align: center;
+	}
+.license-con h1{
+	background:url('/static/images/login/logo_ics_license.gif') no-repeat left top;
+	text-indent:-10000px;
+    width:782px; 
+	height:328px;
+	}
+.license-con h1 a{
+	cursor:pointer;
+	}
+.license-txt{
+	margin: 28px 0 10px;
+	}
+.license-txt li{
+	padding: 2px 0;
+	}	
+.license-box{
+	margin:25px auto 0;
+	width:340px;
+	height:65px;
+	overflow-y:scroll; 
+	border: solid 1px #8e8e8e;
+	text-align: left;
+	padding: 5px;
+	}
+
